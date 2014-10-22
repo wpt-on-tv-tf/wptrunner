@@ -322,7 +322,7 @@ class TestRunnerManager(threading.Thread):
                 self.child_stop_flag.set()
 
         with self.init_lock:
-            # To guard against cases where we fail to connect with marionette for
+            # To guard against cases where we fail to connect with WebDriver for
             # whatever reason
             self.init_timer = threading.Timer(self.browser.init_timeout, init_failed)
             test_queue = self.test_source.get_queue()
@@ -349,15 +349,15 @@ class TestRunnerManager(threading.Thread):
 
     def init_succeeded(self):
         """Callback when we have started the browser, connected via
-        marionette, and we are ready to start testing"""
+        WebDriver, and we are ready to start testing."""
         self.logger.debug("Init succeeded")
         self.init_timer.cancel()
         self.init_fail_count = 0
         self.start_next_test()
 
     def init_failed(self):
-        """Callback when we can't connect to the browser via
-        marionette for some reason"""
+        """Callback when we can't connect to the browser
+        via WebDriver for some reason."""
         self.init_fail_count += 1
         self.logger.warning("Init failed %i" % self.init_fail_count)
         self.init_timer.cancel()
