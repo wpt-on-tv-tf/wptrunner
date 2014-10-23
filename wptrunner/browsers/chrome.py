@@ -2,16 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import os
-
-import mozprocess
-
-from .base import cmd_arg, get_free_port, Browser, ExecutorBrowser, require_arg
+from .base import Browser, ExecutorBrowser, require_arg
 from .webdriver import ChromedriverLocalServer
 from ..executors.executorselenium import SeleniumTestharnessExecutor, required_files
 
-
-here = os.path.split(__file__)[0]
 
 __wptrunner__ = {"product": "chrome",
                  "check_args": "check_args",
@@ -69,11 +63,6 @@ class ChromeBrowser(Browser):
     def stop(self):
         if self.is_alive():
             self.driver.stop()
-
-    def on_output(self, line):
-        self.logger.process_output(self.pid(),
-                                   line.decode("utf8", "replace"),
-                                   command=" ".join(self.cmd))
 
     def pid(self):
         return self.driver.pid
