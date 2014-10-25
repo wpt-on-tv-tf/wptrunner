@@ -138,6 +138,8 @@ def set_from_config(kwargs):
     kwargs["test_paths"] = OrderedDict()
 
     keys = {"paths": [("serve", "serve_root", True),
+                      ("tests", "tests_root", True),
+                      ("metadata", "metadata_root", True),
                       ("prefs", "prefs_root", True),
                       ("run_info", "run_info", True)],
             "web-platform-tests": [("remote_url", "remote_url", False),
