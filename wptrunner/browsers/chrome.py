@@ -60,8 +60,7 @@ class ChromeBrowser(Browser):
         self.driver.start()
 
     def stop(self):
-        if self.is_alive():
-            self.driver.stop()
+        self.driver.stop()
 
     def pid(self):
         return self.driver.pid
