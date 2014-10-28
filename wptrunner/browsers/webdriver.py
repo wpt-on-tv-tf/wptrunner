@@ -100,8 +100,7 @@ class ChromedriverLocalServer(LocalServer):
     default_endpoint = "/wd/hub"
 
     def __init__(self, logger, binary="chromedriver", port=None, endpoint=None):
-        LocalServer.__init__(
-            self, logger, binary, port=port, endpoint=endpoint)
+        LocalServer.__init__(self, logger, binary, port=port, endpoint=endpoint)
         # TODO: verbose logging
         self.cmd = [self.binary,
                     cmd_arg("port", str(self.port)) if self.port else "",
