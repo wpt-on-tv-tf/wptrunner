@@ -348,8 +348,8 @@ class TestRunnerManager(threading.Thread):
             self.init_failed()
 
     def init_succeeded(self):
-        """Callback when we have started the browser, connected via
-        WebDriver, and we are ready to start testing."""
+	"""Callback when we have started the browser, started the remote
+	control connection, and we are ready to start testing."""
         self.logger.debug("Init succeeded")
         self.init_timer.cancel()
         self.init_fail_count = 0
