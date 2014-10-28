@@ -51,8 +51,9 @@ class LocalServer(object):
         try:
             wait_service(addr)
         except:
-            self.logger.warning(
+            self.logger.error(
                 "Server was not accessible within the timeout:\n%s" % traceback.format_exc())
+            raise
         else:
             self.logger.info("Server listening on port %i" % self.port)
 
