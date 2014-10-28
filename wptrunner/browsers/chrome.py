@@ -57,8 +57,7 @@ class ChromeBrowser(Browser):
         self.driver = ChromedriverLocalServer(self.logger)
 
     def start(self):
-        if not self.is_alive():
-            self.driver.start()
+        self.driver.start()
 
     def stop(self):
         if self.is_alive():
