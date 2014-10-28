@@ -356,8 +356,8 @@ class TestRunnerManager(threading.Thread):
         self.start_next_test()
 
     def init_failed(self):
-        """Callback when we can't connect to the browser
-        via WebDriver for some reason."""
+	"""Callback when starting the browser or the remote control connect
+	fails."""
         self.init_fail_count += 1
         self.logger.warning("Init failed %i" % self.init_fail_count)
         self.init_timer.cancel()
