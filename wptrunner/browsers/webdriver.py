@@ -65,6 +65,7 @@ class LocalServer(object):
         if hasattr(self.proc, "proc"):
             exitcode = self.proc.poll()
             return exitcode is None
+        return False
 
     def on_output(self, line):
         self.logger.process_output(self.pid,
