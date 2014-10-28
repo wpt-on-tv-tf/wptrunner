@@ -116,7 +116,7 @@ class ChromedriverLocalServer(LocalServer):
         self.logger.info("chromedriver server stopped listening")
 
 
-def wait_service(addr, timeout=5):
+def wait_service(addr, timeout=15):
     """Waits until network service given as a tuple of (host, port) becomes
     available or the `timeout` duration is reached, at which point
     ``socket.error`` is raised."""
