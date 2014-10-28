@@ -322,8 +322,8 @@ class TestRunnerManager(threading.Thread):
                 self.child_stop_flag.set()
 
         with self.init_lock:
-            # To guard against cases where we fail to connect with WebDriver for
-            # whatever reason
+	    # Guard against problems initialising the browser or the browser
+	    # remote control method
             self.init_timer = threading.Timer(self.browser.init_timeout, init_failed)
             test_queue = self.test_source.get_queue()
             if test_queue is None:
