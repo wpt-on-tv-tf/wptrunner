@@ -21,7 +21,8 @@ def check_args(**kwargs):
 
 
 def browser_kwargs(**kwargs):
-    return {"binary": kwargs["binary"]}
+    return {"binary": kwargs["binary"],
+            "webdriver_binary": kwargs["webdriver_binary"]}
 
 
 def executor_kwargs(http_server_url, **kwargs):
@@ -49,11 +50,11 @@ class ChromeBrowser(Browser):
     """Chrome is backed by chromedriver, which is supplied through
     ``browsers.webdriver.ChromedriverLocalServer``."""
 
-    def __init__(self, logger, binary):
+    def __init__(self, logger, **kwargs):
         """Creates a new representation of Chrome.  The `binary` argument gives
         the browser binary to use for testing."""
-        Browser.__init__(self, logger)
-        self.binary = binary
+        Browser.__init__(self, logger, binary=kwargs["webdriver_binary"])
+        self.binary = kwargs["binary"]
         self.driver = ChromedriverLocalServer(self.logger)
 
     def start(self):
