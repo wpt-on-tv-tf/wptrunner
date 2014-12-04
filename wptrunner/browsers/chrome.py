@@ -50,12 +50,12 @@ class ChromeBrowser(Browser):
     """Chrome is backed by chromedriver, which is supplied through
     ``browsers.webdriver.ChromedriverLocalServer``."""
 
-    def __init__(self, logger, **kwargs):
+    def __init__(self, logger, binary, webdriver_binary=None):
         """Creates a new representation of Chrome.  The `binary` argument gives
         the browser binary to use for testing."""
-        Browser.__init__(self, logger, binary=kwargs["webdriver_binary"])
-        self.binary = kwargs["binary"]
-        self.driver = ChromedriverLocalServer(self.logger)
+        Browser.__init__(self, logger)
+        self.binary = binary
+        self.driver = ChromedriverLocalServer(self.logger, binary=webdriver_binary)
 
     def start(self):
         self.driver.start()

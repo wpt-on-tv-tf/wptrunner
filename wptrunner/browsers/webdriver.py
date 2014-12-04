@@ -41,7 +41,7 @@ class LocalServer(object):
         except OSError as e:
             if e.errno == errno.ENOENT:
                 raise IOError(
-                    "chromedriver executable not found on PATH: %s" % self.binary)
+                    "chromedriver executable not found: %s" % self.binary)
             raise
 
         self.logger.debug(
@@ -99,8 +99,8 @@ class SeleniumLocalServer(LocalServer):
 class ChromedriverLocalServer(LocalServer):
     default_endpoint = "/wd/hub"
 
-    def __init__(self, logger, binary="chromedriver", port=None, endpoint=None):
-        LocalServer.__init__(self, logger, binary, port=port, endpoint=endpoint)
+    def __init__(self, logger, binary=None, port=None, endpoint=None):
+        LocalServer.__init__(self, logger, binary or "chromedriver", port=port, endpoint=endpoint)
         # TODO: verbose logging
         self.cmd = [self.binary,
                     cmd_arg("port", str(self.port)) if self.port else "",
